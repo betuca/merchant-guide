@@ -43,7 +43,7 @@ public class SentencesLoaderTest {
 	}
 
 	@Test
-	public void testLoadSevenAttributionsInEstraTest1() throws LoaderException, RuleException {
+	public void testLoadSevenAttributionsInExtraTest1() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST);
 		assertEquals(7, loader.getAttributions().size());
 	}
