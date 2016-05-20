@@ -22,24 +22,10 @@ public class IntergalacticNotesAnalyzer {
 
 	private List<Question> questions;
 
-	public void loadNotesFromFile(String fileName) throws NotesException {
+	public void loadNotesFromFile(String filePath) throws NotesException {
 		SentencesLoader loader = new SentencesLoader();
 		try {
-			loader.loadFile(fileName);
-			load(loader);
-
-		} catch (LoaderException e) {
-			throw new NotesException(e.getMessage(), e);
-		} catch (RuleException e) {
-			throw new NotesException(e.getMessage(), e);
-		}
-	}
-
-	public void loadNotesFromResource(String resourceName) throws NotesException {
-
-		SentencesLoader loader = new SentencesLoader();
-		try {
-			loader.loadResource(resourceName);
+			loader.loadFile(filePath);
 			load(loader);
 
 		} catch (LoaderException e) {

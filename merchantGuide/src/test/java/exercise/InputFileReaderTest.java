@@ -18,32 +18,32 @@ public class InputFileReaderTest {
 	}
 
 	@Test
-	public void shouldReadEmptyFile() throws IOException {
-		List<String> allLines = fileReader.readFromResource(TestConstants.EMPTY_FILE);
+	public void testReadEmptyFile() throws IOException {
+		List<String> allLines = fileReader.readFromFilePath(TestConstants.EMPTY_FILE);
 		assertEquals(0, allLines.size());
 	}
 
 	@Test
-	public void shouldRead12LinesFromResource() throws IOException {
-		List<String> allLines = fileReader.readFromResource(TestConstants.SUGESTED_TEST_FILE);
+	public void testRead12LinesFromFile() throws IOException {
+		List<String> allLines = fileReader.readFromFilePath(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(12, allLines.size());
 	}
 
 	@Test
-	public void shouldReadFirstLineFromResourceAppropriatly() throws IOException {
-		List<String> allLines = fileReader.readFromResource(TestConstants.SUGESTED_TEST_FILE);
+	public void testReadFirstLineFromFile() throws IOException {
+		List<String> allLines = fileReader.readFromFilePath(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals("glob is I", allLines.get(0));
 	}
 
 	@Test
-	public void shouldReadLastLineFromResourceAppropriatly() throws IOException {
-		List<String> allLines = fileReader.readFromResource(TestConstants.SUGESTED_TEST_FILE);
+	public void testReadLastLineFromFile() throws IOException {
+		List<String> allLines = fileReader.readFromFilePath(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?", allLines.get(11));
 	}
 
 	@Test
-	public void shouldReadFifthLineFromResourceAppropriatly() throws IOException {
-		List<String> allLines = fileReader.readFromResource(TestConstants.SUGESTED_TEST_FILE);
+	public void testReadFifthLineFromFile() throws IOException {
+		List<String> allLines = fileReader.readFromFilePath(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals("glob glob Silver is 34 Credits", allLines.get(4));
 	}
 

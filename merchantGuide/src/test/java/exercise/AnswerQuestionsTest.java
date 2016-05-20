@@ -17,10 +17,9 @@ import exercise.util.MineralBuilder;
 public class AnswerQuestionsTest {
 
 	@Test
-	public void shouldAnswerIntergalacticToDecimalQuestionsSugested() throws ConvertionException {
+	public void testAnswerIntergalacticToDecimalQuestionsSugested() throws ConvertionException {
 
-		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForSugestTest(),
-				buildMineralsMapForSugestTest());
+		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForSugestTest(), buildMineralsMapForSugestTest());
 
 		Question question = new IntergalacticToDecimalQuestion("how much is pish tegj glob glob ?");
 
@@ -29,10 +28,9 @@ public class AnswerQuestionsTest {
 	}
 
 	@Test
-	public void shouldAnswerIntergalacticToDecimalQuestionsExtra() throws ConvertionException {
+	public void testAnswerIntergalacticToDecimalQuestionsExtra() throws ConvertionException {
 
-		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForExtraTest(),
-				buildMineralsMapForExtraTest());
+		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForExtraTest(), buildMineralsMapForExtraTest());
 
 		Question question = new IntergalacticToDecimalQuestion("how much is george george dumbledore ron ?");
 
@@ -41,10 +39,9 @@ public class AnswerQuestionsTest {
 	}
 
 	@Test
-	public void shouldAnswerMineralToCreditsQuestionsSugested() throws ConvertionException {
+	public void testAnswerMineralToCreditsQuestionsSugested() throws ConvertionException {
 
-		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForSugestTest(),
-				buildMineralsMapForSugestTest());
+		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForSugestTest(), buildMineralsMapForSugestTest());
 
 		Question question = new MineralsToCreditsQuestion("how many Credits is glob prok Silver ?");
 
@@ -53,23 +50,20 @@ public class AnswerQuestionsTest {
 	}
 
 	@Test
-	public void shouldAnswerMineralToCreditsQuestionsExtra() throws ConvertionException {
+	public void testAnswerMineralToCreditsQuestionsExtra() throws ConvertionException {
 
-		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForExtraTest(),
-				buildMineralsMapForExtraTest());
+		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForExtraTest(), buildMineralsMapForExtraTest());
 
-		Question question = new MineralsToCreditsQuestion(
-				"how many Credits is neville neville ron ron harry harry Iron ?");
+		Question question = new MineralsToCreditsQuestion("how many Credits is neville neville ron ron harry harry Iron ?");
 
 		assertEquals("neville neville ron ron harry harry Iron is 222 Credits", answerQuestions.answer(question));
 
 	}
 
 	@Test(expected = ConvertionException.class)
-	public void shouldThorwExceptionWhenMetalNotInMap() throws ConvertionException {
+	public void testThorwExceptionWhenMetalNotInMap() throws ConvertionException {
 
-		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForSugestTest(),
-				buildMineralsMapForSugestTest());
+		AnswerQuestion answerQuestions = new AnswerQuestion(buildConversionMapForSugestTest(), buildMineralsMapForSugestTest());
 		Question question = new MineralsToCreditsQuestion("how many Credits is glob glob MMMMM ?");
 		answerQuestions.answer(question);
 	}

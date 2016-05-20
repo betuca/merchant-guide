@@ -31,4 +31,9 @@ public class AttributionSentence extends Sentence {
 		return symbol;
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.ATTRIBUTION;
+	}
+
 }
