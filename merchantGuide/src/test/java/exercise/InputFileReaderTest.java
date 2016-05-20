@@ -21,6 +21,7 @@ public class InputFileReaderTest {
 	public void shouldReadEmptyFile() throws IOException {
 		List<String> allLines = fileReader.readFromResource(TestConstants.EMPTY_FILE);
 		assertEquals(0, allLines.size());
+		assertEquals(0, allLines.size());
 	}
 
 	@Test
