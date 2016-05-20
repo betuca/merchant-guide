@@ -1,0 +1,11 @@
+harry is I
+hermione is V
+ron is X
+dumbledore is L
+neville is C
+ginny is D
+george is M
+neville ron Silver is 1000 Credits
+hermione harry Gold is 12000 Credits
+ginny Iron is 500 Credits
+harry harry Steel is 100 Credits

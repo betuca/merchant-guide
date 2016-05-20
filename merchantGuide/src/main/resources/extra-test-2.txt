@@ -1,0 +1,20 @@
+one is I
+five is V
+ten is X
+fifty is L
+hundred is C
+fivehundred is D
+thousand is M
+thousand hundred five Rocks is 500 Credits
+ten ten one five Diamonds is 4000 Credits
+fivehundred fifty Coal is 1500 Credits   
+one Bone is 10 Credits   
+how much is hundred hundred hundred five ?   
+how much is hundred one five ?
+how much is thousand hundred fivehundred ten hundred one ten five?
+how much is fivehundred hundred one five ?
+how many Credits is one rocks?
+how many Credits is one Diamonds ?
+how many Credits is one Coal ?
+how many Credits is one Bone ?
+how many Credits is thousand thousand thousand Bone ?

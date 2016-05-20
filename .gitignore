@@ -10,3 +10,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/merchantGuide/.classpath
+/merchantGuide/.gitignore
+/merchantGuide/.project
+/merchantGuide/.settings/org.eclipse.jdt.core.prefs
+/merchantGuide/.settings/org.eclipse.jdt.ui.prefs
+/merchantGuide/.settings/org.eclipse.m2e.core.prefs
