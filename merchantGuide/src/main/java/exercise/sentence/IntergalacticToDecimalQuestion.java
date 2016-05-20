@@ -35,4 +35,9 @@ public class IntergalacticToDecimalQuestion extends Sentence implements Question
 		return null;
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
+	}
+
 }

@@ -1,6 +1,6 @@
 package exercise.sentence;
 
-public class Sentence {
+public abstract class Sentence {
 
 	private String sentenceText;
 
@@ -23,5 +23,7 @@ public class Sentence {
 	public String toString() {
 		return sentenceText;
 	}
+
+	abstract public SentenceType getType();
 
 }

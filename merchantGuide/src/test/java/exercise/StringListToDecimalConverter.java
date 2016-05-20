@@ -16,69 +16,45 @@ import exercise.util.Util;
 
 public class StringListToDecimalConverter {
 
-	@Test
-	public void shouldThorwExceptionWithEmptyList() {
+	@Test(expected = ConvertionException.class)
+	public void testThorwExceptionWithEmptyList() throws ConvertionException {
 
 		StringListToDecimanlConverter converter = new StringListToDecimanlConverter(buildMapForSugestTest());
-
 		List<String> list = new ArrayList<>();
-
-		boolean threwException = false;
-		try {
-			converter.convert(list);
-		} catch (ConvertionException e) {
-			threwException = true;
-		}
-		assertEquals(true, threwException);
-
+		converter.convert(list);
 	}
 
 	@Test
-	public void shouldConvertGlobGlobGlob() throws ConvertionException {
+	public void testConvertGlobGlobGlob() throws ConvertionException {
 
 		StringListToDecimanlConverter converter = new StringListToDecimanlConverter(buildMapForSugestTest());
-
 		List<String> list = Arrays.asList("glob", "glob", "glob");
-
 		assertEquals(3, converter.convert(list), Util.EPSILON);
 	}
 
 	@Test
-	public void shouldConvertGlobGlobProk() throws ConvertionException {
+	public void testConvertGlobGlobProk() throws ConvertionException {
 
 		StringListToDecimanlConverter converter = new StringListToDecimanlConverter(buildMapForSugestTest());
-
 		List<String> list = Arrays.asList("glob", "prok");
-
 		assertEquals(4, converter.convert(list), Util.EPSILON);
 	}
 
 	@Test
-	public void shouldConvertLongListsOfNumbers() throws ConvertionException {
+	public void testConvertLongListsOfNumbers() throws ConvertionException {
 
 		StringListToDecimanlConverter converter = new StringListToDecimanlConverter(buildMapForExtraTest());
-
 		List<String> list = Arrays.asList("george", "george", "george", "neville", "george", "dumbledore", "ron", "ron", "harry",
 				"hermione");
-
 		assertEquals(3974, converter.convert(list), Util.EPSILON);
 	}
 
-	@Test
-	public void shouldThorwExceptionWithUnrecognizedSymbols() {
+	@Test(expected = ConvertionException.class)
+	public void testThorwExceptionWithUnrecognizedSymbols() throws ConvertionException {
 
 		StringListToDecimanlConverter converter = new StringListToDecimanlConverter(buildMapForExtraTest());
-
 		List<String> list = Arrays.asList("XXXX", "YYYY");
-
-		boolean threwException = false;
-		try {
-			converter.convert(list);
-		} catch (ConvertionException e) {
-			threwException = true;
-		}
-		assertEquals(true, threwException);
-
+		converter.convert(list);
 	}
 
 	private Map<String, RomanSymbol> buildMapForExtraTest() {

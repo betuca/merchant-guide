@@ -19,9 +19,9 @@ import exercise.util.Util;
 public class IntergalacticNotesAnalyzerTest {
 
 	@Test
-	public void shouldLoadAttributionsNamesToMapFromSugestedFile() throws NotesException {
+	public void testLoadAttributionsNamesToMapFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.SUGESTED_TEST_FILE);
+		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
 		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
 
 		Set<String> correctValues = new HashSet<String>(Arrays.asList("glob", "prok", "pish", "tegj"));
@@ -30,9 +30,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadAttributionsValuesToMapFromSugestedFile() throws NotesException {
+	public void testLoadAttributionsValuesToMapFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.SUGESTED_TEST_FILE);
+		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
 		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
 
 		assertEquals(true, conversionMap.get("glob").equals(RomanSymbol.I));
@@ -42,9 +42,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadAttributionsNamesToMapFromExtraFile() throws NotesException {
+	public void testLoadAttributionsNamesToMapFromExtraFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.EXTRA_TEST);
+		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
 		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
 
 		Set<String> correctValues = new HashSet<String>(
@@ -54,9 +54,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadAttributionsValuesToMapFromExtraFile() throws NotesException {
+	public void testLoadAttributionsValuesToMapFromExtraFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.EXTRA_TEST);
+		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
 		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
 
 		assertEquals(true, conversionMap.get("harry").equals(RomanSymbol.I));
@@ -69,9 +69,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadMineralsFromSugestedFile() throws NotesException {
+	public void testLoadMineralsFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.SUGESTED_TEST_FILE);
+		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
 
 		Set<String> correctValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron"));
 		Map<String, Mineral> minerals = iuc.getMinerals();
@@ -80,9 +80,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadMineralsPricesFromSugestedFile() throws NotesException {
+	public void testLoadMineralsPricesFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.SUGESTED_TEST_FILE);
+		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
 
 		Map<String, Mineral> minerals = iuc.getMinerals();
 		assertEquals(17, minerals.get("silver").getPriceInCredits(), Util.EPSILON);
@@ -92,9 +92,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadMineralsFromExtraFile() throws NotesException {
+	public void testLoadMineralsFromExtraFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.EXTRA_TEST);
+		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
 
 		Set<String> correctValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron", "steel"));
 		Map<String, Mineral> minerals = iuc.getMinerals();
@@ -103,9 +103,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadQuestionsFromSugestedFile() throws NotesException {
+	public void testLoadQuestionsFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.SUGESTED_TEST_FILE);
+		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
 
 		List<String> allQuestions = new LinkedList<String>(Arrays.asList("how much is pish tegj glob glob ?",
 				"how many Credits is glob prok Silver ?", "how many Credits is glob prok Gold ?", "how many Credits is glob prok Iron ?",
@@ -118,9 +118,9 @@ public class IntergalacticNotesAnalyzerTest {
 	}
 
 	@Test
-	public void shouldLoadQuestionsFromExtraFile() throws NotesException {
+	public void testLoadQuestionsFromExtraFile() throws NotesException {
 		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromResource(TestConstants.EXTRA_TEST);
+		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
 
 		List<String> allQuestions = new LinkedList<String>(Arrays.asList("how much is george george dumbledore ron ?",
 				"how many Credits is hermione harry Silver ?", "how many Credits is ron ron ron Gold ?",

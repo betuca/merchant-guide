@@ -36,4 +36,9 @@ public class CreditsConversionSentence extends Sentence {
 		return creditsValue;
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.CREDITS_CONVERSION;
+	}
+
 }

@@ -37,4 +37,9 @@ public class MineralsToCreditsQuestion extends Sentence implements Question {
 		return metalName;
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
+	}
+
 }

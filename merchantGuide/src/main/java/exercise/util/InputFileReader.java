@@ -9,14 +9,7 @@ import java.util.stream.Stream;
 
 public class InputFileReader {
 
-	public List<String> readFromResource(String resourceName) throws IOException {
-
-		ClassLoader classLoader = getClass().getClassLoader();
-		File inputFile = new File(classLoader.getResource(resourceName).getFile());
-		return readFile(inputFile);
-	}
-
-	public List<String> readFromFile(String fileFullPath) throws IOException {
+	public List<String> readFromFilePath(String fileFullPath) throws IOException {
 
 		File inputFile = new File(fileFullPath);
 		return readFile(inputFile);
