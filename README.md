@@ -1,6 +1,6 @@
 <snippet>
-  <content><![CDATA[
-# ${1:Project Name}
+  <content>
+# Merchant Guide Exercise
 
 TODO: Write a project description
 
@@ -31,6 +31,6 @@ TODO: Write credits
 ## License
 
 TODO: Write license
-]]></content>
+</content>
   <tabTrigger>readme</tabTrigger>
 </snippet>
