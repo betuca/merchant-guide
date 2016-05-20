@@ -2,7 +2,9 @@ package exercise.sentence;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import exercise.exception.LoaderException;
 import exercise.exception.RuleException;
@@ -43,28 +45,19 @@ public class SentencesLoader {
 	}
 
 	private void loadSentences(List<String> lines) throws LoaderException {
-		SentenceIdentifier identifier = new SentenceIdentifier();
-		QuestionCreator questionCreator = new QuestionCreator();
 
+		List<Sentence> allSentences = new ArrayList<>();
 		try {
+
 			for (String line : lines) {
-				switch (identifier.identify(line)) {
-					case ATTRIBUTION:
-						attributions.add(new AttributionSentence(line));
-						break;
-
-					case CREDITS_CONVERSION:
-						creditsConversions.add(new CreditsConversionSentence(line));
-						break;
-
-					case QUESTION:
-						questions.add(questionCreator.create(line));
-						break;
-
-					default:
-						throw new LoaderException(Messages.INVALID_PARAMETER_FOR_CONVERSION);
-				}
+				allSentences.add(SentencesFactory.createSentence(line));
 			}
+			attributions = allSentences.stream().filter(sentence -> sentence instanceof AttributionSentence)
+					.map(attribution -> (AttributionSentence) attribution).collect(Collectors.toList());
+			creditsConversions = allSentences.stream().filter(sentence -> sentence instanceof CreditsConversionSentence)
+					.map(creditsConvertion -> (CreditsConversionSentence) creditsConvertion).collect(Collectors.toList());
+			questions = allSentences.stream().filter(sentence -> sentence instanceof Question).map(question -> (Question) question)
+					.collect(Collectors.toList());
 
 		} catch (UnknownSentenceFormatException e) {
 			throw new LoaderException(e.getMessage(), e);
@@ -83,6 +76,10 @@ public class SentencesLoader {
 
 	public List<Question> getQuestions() {
 		return questions;
+	}
+
+	public static void main(String[] args) {
+		List<String> allSentences = Arrays.asList("", "");
 	}
 
 }

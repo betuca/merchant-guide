@@ -17,57 +17,57 @@ public class SentencesLoaderTest {
 	}
 
 	@Test(expected = RuleException.class)
-	public void shouldThrowExceptionWithEmptyFile() throws LoaderException, RuleException {
+	public void testThrowExceptionWithEmptyFile() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EMPTY_FILE);
 	}
 
 	@Test(expected = RuleException.class)
-	public void shouldThrowExceptionWithFileMissingAttributions() throws LoaderException, RuleException {
+	public void testThrowExceptionWithFileMissingAttributions() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST_NO_ATTRIBUTIONS);
 	}
 
 	@Test(expected = RuleException.class)
-	public void shouldThrowExceptionWithFileMissingConversions() throws LoaderException, RuleException {
+	public void testThrowExceptionWithFileMissingConversions() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST_NO_CONVERSIONS);
 	}
 
 	@Test(expected = RuleException.class)
-	public void shouldThrowExceptionWithFileMissingQuestions() throws LoaderException, RuleException {
+	public void testThrowExceptionWithFileMissingQuestions() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST_NO_QUESTIONS);
 	}
 
 	@Test
-	public void shouldHaveFourAttributionsInSugestedTest() throws LoaderException, RuleException {
+	public void testLoadFourAttributionsInSugestedTest() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(4, loader.getAttributions().size());
 	}
 
 	@Test
-	public void shouldHaveSevenAttributionsInEstraTest1() throws LoaderException, RuleException {
+	public void testLoadSevenAttributionsInEstraTest1() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST);
 		assertEquals(7, loader.getAttributions().size());
 	}
 
 	@Test
-	public void shouldHaveThreeCreditsCoversionsInSugestedTest() throws LoaderException, RuleException {
+	public void testLoadThreeCreditsCoversionsInSugestedTest() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(3, loader.getCreditsConversions().size());
 	}
 
 	@Test
-	public void shouldHaveFourCreditsCoversionsInExtraTest1() throws LoaderException, RuleException {
+	public void testLoadFourCreditsCoversionsInExtraTest1() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST);
 		assertEquals(4, loader.getCreditsConversions().size());
 	}
 
 	@Test
-	public void shouldHaveFiveQuestionsInSugestedTest() throws LoaderException, RuleException {
+	public void testLoadFiveQuestionsInSugestedTest() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(5, loader.getQuestions().size());
 	}
 
 	@Test
-	public void shouldHaveSevenQuestionsInExtraTest1() throws LoaderException, RuleException {
+	public void testLoadSevenQuestionsInExtraTest1() throws LoaderException, RuleException {
 		loader.loadResource(TestConstants.EXTRA_TEST);
 		assertEquals(7, loader.getQuestions().size());
 	}

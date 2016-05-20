@@ -1,12 +1,12 @@
 package exercise.sentence;
 
-public class QuestionCreator {
+public class QuestionFactory {
 
 	private static final String INTERGALACTIC_TO_DECIMAL_QUESTION_STRING = "how much is";
 	private static final String MINERALS_TO_CREDITS_QUESTION_STRING = "how many Credits is";
 
-	public Question create(String line) {
-		Question question = null;
+	public static Sentence create(String line) {
+		Sentence question = null;
 
 		if (line.startsWith(INTERGALACTIC_TO_DECIMAL_QUESTION_STRING)) {
 			question = new IntergalacticToDecimalQuestion(line);

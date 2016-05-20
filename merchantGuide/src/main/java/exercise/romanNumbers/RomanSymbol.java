@@ -24,32 +24,40 @@ public enum RomanSymbol {
 	public static RomanSymbol getFromChar(char c) {
 		RomanSymbol symbol;
 		switch (c) {
-			case 'I':
-				symbol = I;
-				break;
-			case 'V':
-				symbol = V;
-				break;
-			case 'X':
-				symbol = X;
-				break;
-			case 'L':
-				symbol = L;
-				break;
-			case 'C':
-				symbol = C;
-				break;
-			case 'D':
-				symbol = D;
-				break;
-			case 'M':
-				symbol = M;
-				break;
-			default:
-				throw new InvalidParameterException(MessageFormat.format(Messages.INVALID_PARAMETER_FOR_CONVERSION, c));
+		case 'I':
+			symbol = I;
+			break;
+		case 'V':
+			symbol = V;
+			break;
+		case 'X':
+			symbol = X;
+			break;
+		case 'L':
+			symbol = L;
+			break;
+		case 'C':
+			symbol = C;
+			break;
+		case 'D':
+			symbol = D;
+			break;
+		case 'M':
+			symbol = M;
+			break;
+		default:
+			throw new InvalidParameterException(MessageFormat.format(Messages.INVALID_PARAMETER_FOR_CONVERSION, c));
 		}
 
 		return symbol;
+	}
+
+	public static String getValuesAsString() {
+		StringBuilder symbolsSb = new StringBuilder();
+		for (RomanSymbol symbol : values()) {
+			symbolsSb.append(symbol);
+		}
+		return symbolsSb.toString();
 	}
 
 	public static RomanSymbol getFromString(String s) {
