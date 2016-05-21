@@ -10,6 +10,10 @@ import exercise.romanNumbers.RomanSymbol;
 import exercise.romanNumbers.RomanToDecimalConverter;
 import exercise.util.Messages;
 
+/*
+ * Classe responsavel por realizar a conversao de numeros galaticos,
+ * servindo de interface para o pacote de numeros romanos.
+ */
 public class GalacticValueToNumberConverter {
 
 	private Map<String, RomanSymbol> conversionMap;
@@ -25,11 +29,11 @@ public class GalacticValueToNumberConverter {
 
 			String romanNumber = "";
 			StringBuilder sb = new StringBuilder();
-			RomanSymbol symbol = null;
 			for (String value : list) {
-				symbol = conversionMap.get(value);
-				if (symbol == null)
+				RomanSymbol symbol = conversionMap.get(value);
+				if (symbol == null) {
 					throw new ConversionException(MessageFormat.format(Messages.UNRECOGNIZABLE_SYMBOL_MESSAGE, value));
+				}
 				sb.append(symbol);
 			}
 			romanNumber = sb.toString();
