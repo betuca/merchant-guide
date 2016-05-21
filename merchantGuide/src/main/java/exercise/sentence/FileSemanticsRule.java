@@ -4,6 +4,13 @@ import exercise.exception.FileSemanticsException;
 import exercise.util.Messages;
 import exercise.util.Rule;
 
+/*
+ * Classe que representa uma regra para garantir que o arquivo que 
+ * esta sendo lido apresenta o minimo de caracteristicas para ser 
+ * considerado valido. Para ser considerado um arquivo valido
+ * este precisa ter, no minimo, uma frase de cada tipo (attributions,
+ * conversions e questions).
+ */
 public class FileSemanticsRule implements Rule<SentencesLoader> {
 
 	public void test(SentencesLoader loader) throws FileSemanticsException {

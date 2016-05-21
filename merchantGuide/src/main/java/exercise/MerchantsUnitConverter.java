@@ -1,12 +1,9 @@
 package exercise;
 
 import java.util.List;
-import java.util.Map;
 
-import exercise.exception.ConvertionException;
 import exercise.exception.InputException;
 import exercise.exception.NotesException;
-import exercise.romanNumbers.RomanSymbol;
 import exercise.sentence.Question;
 import exercise.util.Messages;
 
@@ -16,25 +13,14 @@ public class MerchantsUnitConverter {
 
 		try {
 
-			String fileName = validateInput(args);
+			String filePath = validateInput(args);
 
-			IntergalacticNotesAnalyzer intergalacticNotesAnalyzer = new IntergalacticNotesAnalyzer();
-			intergalacticNotesAnalyzer.loadNotesFromFile(fileName);
+			IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(filePath);
 
-			Map<String, RomanSymbol> conversionMap = intergalacticNotesAnalyzer.getConversionMap();
-			List<Question> questions = intergalacticNotesAnalyzer.getQuestions();
-			Map<String, Mineral> minerals = intergalacticNotesAnalyzer.getMinerals();
-
-			AnswerModule answerModule = new AnswerModule(questions, conversionMap, minerals);
-			List<String> answers = answerModule.getAnswers();
-
-			for (String answer : answers) {
-				System.out.println(answer);
-			}
+			List<Question> questions = ina.getQuestions();
+			questions.forEach(question -> System.out.println(question.getAnswer(ina.getConverter(), ina.getMinerals())));
 
 		} catch (NotesException e) {
-			System.out.println(e.getMessage());
-		} catch (ConvertionException e) {
 			System.out.println(e.getMessage());
 		} catch (InputException e) {
 			System.out.println(Messages.INPUT_FILE_TEXT);

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import exercise.exception.ConvertionException;
+import exercise.exception.ConversionException;
 import exercise.exception.LoaderException;
 import exercise.exception.NotesException;
 import exercise.exception.RuleException;
@@ -15,14 +15,19 @@ import exercise.sentence.Question;
 import exercise.sentence.SentencesLoader;
 import exercise.util.Messages;
 
+/**
+ * Classe responsavel por fazer a interface com o SentecesLoader utilizando as
+ * "sentences" (frases) para criar as ferramentas que serao necessarias para
+ * responder as perguntas originais (o GalacticValueToNumberConverter e o mapa
+ * de minerais (mineralsMap)).
+ */
 public class IntergalacticNotesAnalyzer {
 
-	private Map<String, RomanSymbol> convertionMap = new HashMap<>();
+	private GalacticValueToNumberConverter converter;
 	private Map<String, Mineral> mineralsMap = new HashMap<>();
-
 	private List<Question> questions;
 
-	public void loadNotesFromFile(String filePath) throws NotesException {
+	public IntergalacticNotesAnalyzer(String filePath) throws NotesException {
 		SentencesLoader loader = new SentencesLoader();
 		try {
 			loader.loadFile(filePath);
@@ -37,14 +42,12 @@ public class IntergalacticNotesAnalyzer {
 
 	private void load(SentencesLoader loader) throws NotesException {
 
-		loadConversionMap(loader.getAttributions());
+		loadGalacticToNumberConverter(loader.getAttributions());
 		loadMinerals(loader.getCreditsConversions());
 		questions = loader.getQuestions();
 	}
 
 	private void loadMinerals(List<CreditsConversionSentence> creditsConversions) throws NotesException {
-
-		StringListToDecimanlConverter converter = new StringListToDecimanlConverter(convertionMap);
 
 		try {
 			for (CreditsConversionSentence creditsConversion : creditsConversions) {
@@ -53,22 +56,23 @@ public class IntergalacticNotesAnalyzer {
 				mineral.setPriceInCredits(creditsConversion.getCreditsValue() / convertedGalacticValue);
 				mineralsMap.put(mineral.getName(), mineral);
 			}
-		} catch (ConvertionException e) {
+		} catch (ConversionException e) {
 			throw new NotesException(Messages.PROBLEM_READING_NOTES, e);
 
 		}
 
 	}
 
-	private void loadConversionMap(List<AttributionSentence> attributions) {
+	private void loadGalacticToNumberConverter(List<AttributionSentence> attributions) {
+		Map<String, RomanSymbol> conversionMap = new HashMap<>();
 		for (AttributionSentence attribution : attributions) {
-			convertionMap.put(attribution.getName(), attribution.getSymbol());
+			conversionMap.put(attribution.getName(), attribution.getSymbol());
 		}
-
+		converter = new GalacticValueToNumberConverter(conversionMap);
 	}
 
-	public Map<String, RomanSymbol> getConversionMap() {
-		return convertionMap;
+	public GalacticValueToNumberConverter getConverter() {
+		return converter;
 	}
 
 	public Map<String, Mineral> getMinerals() {

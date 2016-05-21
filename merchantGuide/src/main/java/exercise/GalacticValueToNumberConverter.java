@@ -4,21 +4,21 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
-import exercise.exception.ConvertionException;
+import exercise.exception.ConversionException;
 import exercise.exception.RuleException;
 import exercise.romanNumbers.RomanSymbol;
 import exercise.romanNumbers.RomanToDecimalConverter;
 import exercise.util.Messages;
 
-public class StringListToDecimanlConverter {
+public class GalacticValueToNumberConverter {
 
-	private Map<String, RomanSymbol> convertionMap;
+	private Map<String, RomanSymbol> conversionMap;
 
-	public StringListToDecimanlConverter(Map<String, RomanSymbol> convertionMap) {
-		this.convertionMap = convertionMap;
+	public GalacticValueToNumberConverter(Map<String, RomanSymbol> conversionMap) {
+		this.conversionMap = conversionMap;
 	}
 
-	public float convert(List<String> list) throws ConvertionException {
+	public float convert(List<String> list) throws ConversionException {
 
 		float result = 0;
 		if (list != null && !list.isEmpty()) {
@@ -27,9 +27,9 @@ public class StringListToDecimanlConverter {
 			StringBuilder sb = new StringBuilder();
 			RomanSymbol symbol = null;
 			for (String value : list) {
-				symbol = convertionMap.get(value);
+				symbol = conversionMap.get(value);
 				if (symbol == null)
-					throw new ConvertionException(MessageFormat.format(Messages.UNRECOGNIZABLE_SYMBOL_MESSAGE, value));
+					throw new ConversionException(MessageFormat.format(Messages.UNRECOGNIZABLE_SYMBOL_MESSAGE, value));
 				sb.append(symbol);
 			}
 			romanNumber = sb.toString();
@@ -40,11 +40,11 @@ public class StringListToDecimanlConverter {
 
 			} catch (RuleException e) {
 
-				throw new ConvertionException(MessageFormat.format(Messages.INVALID_ROMAN_NUMBER, romanNumber), e);
+				throw new ConversionException(MessageFormat.format(Messages.INVALID_ROMAN_NUMBER, romanNumber), e);
 			}
 
 		} else {
-			throw new ConvertionException(Messages.TRYING_TO_CONVERT_EMPTY_LIST_MESSAGE);
+			throw new ConversionException(Messages.TRYING_TO_CONVERT_EMPTY_LIST_MESSAGE);
 		}
 		return result;
 

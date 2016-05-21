@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class CreditsConversionSentence extends Sentence {
 
-	private static final String CREDITS_CONVERTIONS_REGEX = "(.*) (\\D+)( is )(\\d+)(.*)";
+	private static final String CREDITS_CONVERSIONS_REGEX = "(.*) (\\D+)( is )(\\d+)(.*)";
 	private String mineralName;
 	private List<String> galacticValues;
 	private int creditsValue;
@@ -15,7 +15,7 @@ public class CreditsConversionSentence extends Sentence {
 	public CreditsConversionSentence(String text) {
 		super(text);
 
-		Pattern patern = Pattern.compile(CREDITS_CONVERTIONS_REGEX);
+		Pattern patern = Pattern.compile(CREDITS_CONVERSIONS_REGEX);
 		Matcher matcher = patern.matcher(text);
 		matcher.find();
 		this.galacticValues = Arrays.asList(matcher.group(1).split(" "));

@@ -16,6 +16,7 @@ public class Messages {
 	public static final String FILE_SEMANTICS_NO_CONVERSIONS = "Invalid intergalactic notes file. No conversions section found.";
 	public static final String FILE_SEMANTICS_NO_QUESTIONS = "Invalid intergalactic notes file. No questions section found.";
 	public static final String PROBLEM_READING_NOTES = "Problem reading intergalactic notes. Please check the file path and try again.";
+	public static final String INTERGALACTIC_NOTES_NOT_INITIALIZED = "The IntergalacticNotesAnalyzer must be initialized before using it.";
 
 	public static final String INTERGALACTIC_TO_DECIMAL_ANSWER_MESSAGE = "{0} is {1}";
 	public static final String MINERAL_TO_CREDITS_ANSWER_MESSAGE = "{0} {1} is {2} Credits";

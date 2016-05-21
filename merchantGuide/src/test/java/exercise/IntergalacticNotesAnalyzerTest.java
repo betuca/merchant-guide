@@ -3,6 +3,7 @@ package exercise;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import exercise.exception.ConversionException;
 import exercise.exception.NotesException;
 import exercise.romanNumbers.RomanSymbol;
 import exercise.sentence.Question;
@@ -19,72 +21,53 @@ import exercise.util.Util;
 public class IntergalacticNotesAnalyzerTest {
 
 	@Test
-	public void testLoadAttributionsNamesToMapFromSugestedFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
-		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
+	public void testLoadGalacticConverterFromSugestedFile() throws NotesException, ConversionException {
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.SUGESTED_TEST_FILE);
+		GalacticValueToNumberConverter converterFromAnalizer = ina.getConverter();
 
-		Set<String> correctValues = new HashSet<String>(Arrays.asList("glob", "prok", "pish", "tegj"));
+		GalacticValueToNumberConverter testConverter = new GalacticValueToNumberConverter(buildMapForSugestTest());
+		List<String> testValues = Arrays.asList("glob", "glob", "glob");
+		List<String> testValues2 = Arrays.asList("glob", "prok");
+		List<String> testValues3 = Arrays.asList("pish", "pish", "pish");
+		List<String> testValues4 = Arrays.asList("pish", "pish", "prok");
 
-		assertEquals(true, conversionMap.keySet().equals(correctValues));
+		assertEquals(testConverter.convert(testValues), converterFromAnalizer.convert(testValues), Util.EPSILON);
+		assertEquals(testConverter.convert(testValues2), converterFromAnalizer.convert(testValues2), Util.EPSILON);
+		assertEquals(testConverter.convert(testValues3), converterFromAnalizer.convert(testValues3), Util.EPSILON);
+		assertEquals(testConverter.convert(testValues4), converterFromAnalizer.convert(testValues4), Util.EPSILON);
 	}
 
 	@Test
-	public void testLoadAttributionsValuesToMapFromSugestedFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
-		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
+	public void testLoadGalacticConverterFromExtraFile() throws NotesException, ConversionException {
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.EXTRA_TEST);
+		GalacticValueToNumberConverter converterFromAnalizer = ina.getConverter();
 
-		assertEquals(true, conversionMap.get("glob").equals(RomanSymbol.I));
-		assertEquals(true, conversionMap.get("prok").equals(RomanSymbol.V));
-		assertEquals(true, conversionMap.get("pish").equals(RomanSymbol.X));
-		assertEquals(true, conversionMap.get("tegj").equals(RomanSymbol.L));
-	}
+		GalacticValueToNumberConverter testConverter = new GalacticValueToNumberConverter(buildMapForExtraTest());
+		List<String> testValues = Arrays.asList("george", "george", "george", "neville", "george", "dumbledore", "ron", "ron", "harry",
+				"hermione");
+		List<String> testValues2 = Arrays.asList("neville", "neville", "neville", "ron", "harry");
+		List<String> testValues3 = Arrays.asList("george", "hermione", "harry", "harry");
 
-	@Test
-	public void testLoadAttributionsNamesToMapFromExtraFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
-		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
-
-		Set<String> correctValues = new HashSet<String>(
-				Arrays.asList("harry", "hermione", "ron", "dumbledore", "neville", "ginny", "george"));
-
-		assertEquals(true, conversionMap.keySet().equals(correctValues));
-	}
-
-	@Test
-	public void testLoadAttributionsValuesToMapFromExtraFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
-		Map<String, RomanSymbol> conversionMap = iuc.getConversionMap();
-
-		assertEquals(true, conversionMap.get("harry").equals(RomanSymbol.I));
-		assertEquals(true, conversionMap.get("hermione").equals(RomanSymbol.V));
-		assertEquals(true, conversionMap.get("ron").equals(RomanSymbol.X));
-		assertEquals(true, conversionMap.get("dumbledore").equals(RomanSymbol.L));
-		assertEquals(true, conversionMap.get("neville").equals(RomanSymbol.C));
-		assertEquals(true, conversionMap.get("ginny").equals(RomanSymbol.D));
-		assertEquals(true, conversionMap.get("george").equals(RomanSymbol.M));
+		assertEquals(testConverter.convert(testValues), converterFromAnalizer.convert(testValues), Util.EPSILON);
+		assertEquals(testConverter.convert(testValues2), converterFromAnalizer.convert(testValues2), Util.EPSILON);
+		assertEquals(testConverter.convert(testValues3), converterFromAnalizer.convert(testValues3), Util.EPSILON);
 	}
 
 	@Test
 	public void testLoadMineralsFromSugestedFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.SUGESTED_TEST_FILE);
 
-		Set<String> correctValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron"));
-		Map<String, Mineral> minerals = iuc.getMinerals();
-		assertEquals(true, minerals.keySet().equals(correctValues));
+		Set<String> expectedValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron"));
+		Map<String, Mineral> minerals = ina.getMinerals();
+		assertEquals(true, minerals.keySet().equals(expectedValues));
 
 	}
 
 	@Test
 	public void testLoadMineralsPricesFromSugestedFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.SUGESTED_TEST_FILE);
 
-		Map<String, Mineral> minerals = iuc.getMinerals();
+		Map<String, Mineral> minerals = ina.getMinerals();
 		assertEquals(17, minerals.get("silver").getPriceInCredits(), Util.EPSILON);
 		assertEquals(14450, minerals.get("gold").getPriceInCredits(), Util.EPSILON);
 		assertEquals(195.5, minerals.get("iron").getPriceInCredits(), Util.EPSILON);
@@ -93,52 +76,60 @@ public class IntergalacticNotesAnalyzerTest {
 
 	@Test
 	public void testLoadMineralsFromExtraFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.EXTRA_TEST);
 
-		Set<String> correctValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron", "steel"));
-		Map<String, Mineral> minerals = iuc.getMinerals();
-		assertEquals(true, minerals.keySet().equals(correctValues));
+		Set<String> expectedValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron", "steel"));
+		Map<String, Mineral> minerals = ina.getMinerals();
+		assertEquals(true, minerals.keySet().equals(expectedValues));
 
 	}
 
 	@Test
 	public void testLoadQuestionsFromSugestedFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.SUGESTED_TEST_FILE);
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.SUGESTED_TEST_FILE);
 
-		List<String> allQuestions = new LinkedList<String>(Arrays.asList("how much is pish tegj glob glob ?",
+		List<String> allExpectedQuestions = new LinkedList<String>(Arrays.asList("how much is pish tegj glob glob ?",
 				"how many Credits is glob prok Silver ?", "how many Credits is glob prok Gold ?", "how many Credits is glob prok Iron ?",
 				"how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"));
-		List<Question> questions = iuc.getQuestions();
+		List<Question> questionsFromAnalyzer = ina.getQuestions();
+		questionsFromAnalyzer.removeIf(question -> allExpectedQuestions.contains(question.getSentenceText()));
 
-		removeSimilarItemsFromLists(allQuestions, questions);
-
-		assertEquals(0, allQuestions.size());
+		assertEquals(0, questionsFromAnalyzer.size());
 	}
 
 	@Test
 	public void testLoadQuestionsFromExtraFile() throws NotesException {
-		IntergalacticNotesAnalyzer iuc = new IntergalacticNotesAnalyzer();
-		iuc.loadNotesFromFile(TestConstants.EXTRA_TEST);
+		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.EXTRA_TEST);
 
-		List<String> allQuestions = new LinkedList<String>(Arrays.asList("how much is george george dumbledore ron ?",
+		List<String> allExpectedQuestions = new LinkedList<String>(Arrays.asList("how much is george george dumbledore ron ?",
 				"how many Credits is hermione harry Silver ?", "how many Credits is ron ron ron Gold ?",
 				"how many Credits is neville neville ron ron harry harry Iron ?", "how many Credits is ginny neville Steel ?",
 				"how much nerd content are there in this test ?", "is there anything else you need to know ?"));
-		List<Question> questions = iuc.getQuestions();
+		List<Question> questionsFromAnalyzer = ina.getQuestions();
+		questionsFromAnalyzer.removeIf(question -> allExpectedQuestions.contains(question.getSentenceText()));
 
-		removeSimilarItemsFromLists(allQuestions, questions);
-
-		assertEquals(0, allQuestions.size());
+		assertEquals(0, questionsFromAnalyzer.size());
 	}
 
-	private void removeSimilarItemsFromLists(List<String> firstList, List<Question> secondList) {
-		for (Question question : secondList) {
-			if (firstList.contains(question.getSentenceText())) {
-				firstList.remove(question.getSentenceText());
-			}
-		}
+	private Map<String, RomanSymbol> buildMapForExtraTest() {
+		Map<String, RomanSymbol> conversionMap = new HashMap<>();
+		conversionMap.put("harry", RomanSymbol.I);
+		conversionMap.put("hermione", RomanSymbol.V);
+		conversionMap.put("ron", RomanSymbol.X);
+		conversionMap.put("dumbledore", RomanSymbol.L);
+		conversionMap.put("neville", RomanSymbol.C);
+		conversionMap.put("ginny", RomanSymbol.D);
+		conversionMap.put("george", RomanSymbol.M);
+		return conversionMap;
+	}
+
+	private Map<String, RomanSymbol> buildMapForSugestTest() {
+		Map<String, RomanSymbol> conversionMap = new HashMap<>();
+		conversionMap.put("glob", RomanSymbol.I);
+		conversionMap.put("prok", RomanSymbol.V);
+		conversionMap.put("pish", RomanSymbol.X);
+		conversionMap.put("tegj", RomanSymbol.L);
+		return conversionMap;
 	}
 
 }
