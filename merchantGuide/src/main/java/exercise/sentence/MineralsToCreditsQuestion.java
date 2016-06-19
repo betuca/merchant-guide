@@ -62,4 +62,8 @@ public class MineralsToCreditsQuestion extends Sentence implements Question {
 
 	}
 
+	public static void main(String[] args) {
+		new MineralsToCreditsQuestion("how many Credits is glob prok Gold ?");
+	}
+
 }
