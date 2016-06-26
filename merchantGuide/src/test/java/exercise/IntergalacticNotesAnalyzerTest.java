@@ -56,7 +56,6 @@ public class IntergalacticNotesAnalyzerTest {
 	@Test
 	public void testLoadMineralsFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.SUGESTED_TEST_FILE);
-
 		Set<String> expectedValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron"));
 		Map<String, Mineral> minerals = ina.getMinerals();
 		assertEquals(true, minerals.keySet().equals(expectedValues));
@@ -66,7 +65,6 @@ public class IntergalacticNotesAnalyzerTest {
 	@Test
 	public void testLoadMineralsPricesFromSugestedFile() throws NotesException {
 		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.SUGESTED_TEST_FILE);
-
 		Map<String, Mineral> minerals = ina.getMinerals();
 		assertEquals(17, minerals.get("silver").getPriceInCredits(), Util.EPSILON);
 		assertEquals(14450, minerals.get("gold").getPriceInCredits(), Util.EPSILON);
@@ -77,7 +75,6 @@ public class IntergalacticNotesAnalyzerTest {
 	@Test
 	public void testLoadMineralsFromExtraFile() throws NotesException {
 		IntergalacticNotesAnalyzer ina = new IntergalacticNotesAnalyzer(TestConstants.EXTRA_TEST);
-
 		Set<String> expectedValues = new HashSet<String>(Arrays.asList("silver", "gold", "iron", "steel"));
 		Map<String, Mineral> minerals = ina.getMinerals();
 		assertEquals(true, minerals.keySet().equals(expectedValues));

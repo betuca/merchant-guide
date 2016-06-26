@@ -66,4 +66,9 @@ public class MineralsToCreditsQuestion extends Sentence implements Question {
 		new MineralsToCreditsQuestion("how many Credits is glob prok Gold ?");
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
+	}
+
 }

@@ -49,4 +49,9 @@ public class IntergalacticToDecimalQuestion extends Sentence implements Question
 		return answer;
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
+	}
+
 }

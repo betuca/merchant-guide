@@ -22,4 +22,9 @@ public class UnknownQuestion extends Sentence implements Question {
 		return Messages.UNKNOWN_ANSWER_MESSAGE;
 	}
 
+	@Override
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
+	}
+
 }
