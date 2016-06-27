@@ -18,57 +18,57 @@ public class SentencesLoaderTest {
 
 	@Test(expected = RuleException.class)
 	public void testThrowExceptionWithEmptyFile() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EMPTY_FILE);
+		loader.loadFile(TestConstants.EMPTY_FILE);
 	}
 
 	@Test(expected = RuleException.class)
 	public void testThrowExceptionWithFileMissingAttributions() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EXTRA_TEST_NO_ATTRIBUTIONS);
+		loader.loadFile(TestConstants.EXTRA_TEST_NO_ATTRIBUTIONS);
 	}
 
 	@Test(expected = RuleException.class)
 	public void testThrowExceptionWithFileMissingConversions() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EXTRA_TEST_NO_CONVERSIONS);
+		loader.loadFile(TestConstants.EXTRA_TEST_NO_CONVERSIONS);
 	}
 
 	@Test(expected = RuleException.class)
 	public void testThrowExceptionWithFileMissingQuestions() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EXTRA_TEST_NO_QUESTIONS);
+		loader.loadFile(TestConstants.EXTRA_TEST_NO_QUESTIONS);
 	}
 
 	@Test
 	public void testLoadFourAttributionsInSugestedTest() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.SUGESTED_TEST_FILE);
+		loader.loadFile(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(4, loader.getAttributions().size());
 	}
 
 	@Test
 	public void testLoadSevenAttributionsInExtraTest1() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EXTRA_TEST);
+		loader.loadFile(TestConstants.EXTRA_TEST);
 		assertEquals(7, loader.getAttributions().size());
 	}
 
 	@Test
 	public void testLoadThreeCreditsCoversionsInSugestedTest() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.SUGESTED_TEST_FILE);
+		loader.loadFile(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(3, loader.getCreditsConversions().size());
 	}
 
 	@Test
 	public void testLoadFourCreditsCoversionsInExtraTest1() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EXTRA_TEST);
+		loader.loadFile(TestConstants.EXTRA_TEST);
 		assertEquals(4, loader.getCreditsConversions().size());
 	}
 
 	@Test
 	public void testLoadFiveQuestionsInSugestedTest() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.SUGESTED_TEST_FILE);
+		loader.loadFile(TestConstants.SUGESTED_TEST_FILE);
 		assertEquals(5, loader.getQuestions().size());
 	}
 
 	@Test
 	public void testLoadSevenQuestionsInExtraTest1() throws LoaderException, RuleException {
-		loader.loadResource(TestConstants.EXTRA_TEST);
+		loader.loadFile(TestConstants.EXTRA_TEST);
 		assertEquals(7, loader.getQuestions().size());
 	}
 

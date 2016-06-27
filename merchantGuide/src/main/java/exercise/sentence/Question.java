@@ -1,15 +1,14 @@
 package exercise.sentence;
 
-import java.util.List;
+import java.util.Map;
+
+import exercise.GalacticValueToNumberConverter;
+import exercise.Mineral;
 
 public interface Question {
 
-	List<String> getGalacticValues();
-
-	String getGalactitcValueText();
-
-	String getMetalName();
-
 	String getSentenceText();
+
+	String getAnswer(GalacticValueToNumberConverter converter, Map<String, Mineral> mineralsMap);
 
 }

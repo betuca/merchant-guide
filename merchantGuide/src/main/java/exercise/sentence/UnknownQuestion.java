@@ -1,6 +1,10 @@
 package exercise.sentence;
 
-import java.util.List;
+import java.util.Map;
+
+import exercise.GalacticValueToNumberConverter;
+import exercise.Mineral;
+import exercise.util.Messages;
 
 public class UnknownQuestion extends Sentence implements Question {
 
@@ -9,18 +13,18 @@ public class UnknownQuestion extends Sentence implements Question {
 	}
 
 	@Override
-	public String getMetalName() {
-		return null;
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
 	}
 
 	@Override
-	public List<String> getGalacticValues() {
-		return null;
+	public String getAnswer(GalacticValueToNumberConverter converter, Map<String, Mineral> mineralsMap) {
+		return Messages.UNKNOWN_ANSWER_MESSAGE;
 	}
 
 	@Override
-	public String getGalactitcValueText() {
-		return null;
+	public SentenceType getType() {
+		return SentenceType.QUESTION;
 	}
 
 }

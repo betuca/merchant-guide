@@ -8,6 +8,7 @@ import org.junit.Test;
 import exercise.exception.UnknownSentenceFormatException;
 import exercise.sentence.AttributionSentence;
 import exercise.sentence.CreditsConversionSentence;
+import exercise.sentence.MineralToMineralQuestion;
 import exercise.sentence.Question;
 import exercise.sentence.SentencesFactory;
 
@@ -39,9 +40,15 @@ public class SentecesFactoryTest {
 	}
 
 	@Test
-	public void shouldIdentifyStrangeQuestionsAsQuestions() throws UnknownSentenceFormatException {
+	public void testIdentifyStrangeQuestionsAsQuestions() throws UnknownSentenceFormatException {
 		assertThat(SentencesFactory.createSentence("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"),
 				instanceOf(Question.class));
+	}
+
+	@Test
+	public void testIdentifyMineralToMineralQuestions() throws UnknownSentenceFormatException {
+		assertThat(SentencesFactory.createSentence("how much Iron is in Gold ?"), instanceOf(MineralToMineralQuestion.class));
+
 	}
 
 }

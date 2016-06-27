@@ -6,6 +6,10 @@ import exercise.exception.UnknownSentenceFormatException;
 import exercise.romanNumbers.RomanSymbol;
 import exercise.util.Messages;
 
+/*
+ * Esta classe tem como objetivo identificar cada tipo de linha do 
+ * arquivo, assim como isolar a criacao de objetos do tipo Sentence.
+ */
 public class SentencesFactory {
 
 	private static final String attributionPattern = "\\S+ is [" + RomanSymbol.getValuesAsString() + "]";
