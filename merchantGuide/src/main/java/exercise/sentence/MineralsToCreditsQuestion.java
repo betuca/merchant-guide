@@ -33,11 +33,6 @@ public class MineralsToCreditsQuestion extends Sentence implements Question {
 	}
 
 	@Override
-	public SentenceType getType() {
-		return SentenceType.QUESTION;
-	}
-
-	@Override
 	public String getAnswer(GalacticValueToNumberConverter converter, Map<String, Mineral> mineralsMap) {
 
 		String answer = "";

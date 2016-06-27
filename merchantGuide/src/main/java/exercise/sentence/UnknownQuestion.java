@@ -13,11 +13,6 @@ public class UnknownQuestion extends Sentence implements Question {
 	}
 
 	@Override
-	public SentenceType getType() {
-		return SentenceType.QUESTION;
-	}
-
-	@Override
 	public String getAnswer(GalacticValueToNumberConverter converter, Map<String, Mineral> mineralsMap) {
 		return Messages.UNKNOWN_ANSWER_MESSAGE;
 	}
