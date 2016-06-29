@@ -24,6 +24,16 @@ public class SentecesFactoryTest {
 		SentencesFactory.createSentence("pish is P");
 	}
 
+	@Test(expected = UnknownSentenceFormatException.class)
+	public void testThrowExceptionToAttributionWrongSymbolYYY() throws UnknownSentenceFormatException {
+		SentencesFactory.createSentence("pish is YYY");
+	}
+
+	@Test(expected = UnknownSentenceFormatException.class)
+	public void testThrowExceptionToAttributionWrongSymbolYYY111() throws UnknownSentenceFormatException {
+		SentencesFactory.createSentence("pish is YYY111");
+	}
+
 	@Test
 	public void testCreateCreditsConversionSentences() throws UnknownSentenceFormatException {
 		assertThat(SentencesFactory.createSentence("glob glob Silver is 34 Credits"), instanceOf(CreditsConversionSentence.class));
